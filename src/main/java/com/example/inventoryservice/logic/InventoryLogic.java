@@ -19,4 +19,7 @@ public class InventoryLogic {
         inventoryDao.saveInventory(inventory);
     }
 
+    public Inventory getInventoryById(int productId) {
+        return inventoryDao.getInventoryById(productId);
+    }
 }

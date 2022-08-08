@@ -16,5 +16,7 @@ public class InventoryDao {
         inventoryRepository.save(inventory);
     }
 
-
+    public Inventory getInventoryById(int productId){
+        return inventoryRepository.findInventoryByProductId(productId);
+    }
 }

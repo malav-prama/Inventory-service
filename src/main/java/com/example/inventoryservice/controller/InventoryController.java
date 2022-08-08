@@ -3,20 +3,25 @@ package com.example.inventoryservice.controller;
 import com.example.inventoryservice.logic.InventoryLogic;
 import com.example.inventoryservice.model.Inventory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/inventory/v2")
 public class InventoryController {
 
     @Autowired
     InventoryLogic inventoryLogic;
 
-    @PostMapping("v2/inventory")
+    @PostMapping("/inventory")
     public void createInventory(@RequestBody Inventory inventory)
     {
         inventoryLogic.createInventory(inventory);
     }
+
+    @GetMapping()
+    public Inventory getInventoryById(@RequestParam("productId") int productId){
+        return inventoryLogic.getInventoryById(productId);
+    }
+
 
 }
