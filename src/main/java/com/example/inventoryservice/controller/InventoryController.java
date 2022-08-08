@@ -2,7 +2,9 @@ package com.example.inventoryservice.controller;
 
 import com.example.inventoryservice.logic.InventoryLogic;
 import com.example.inventoryservice.model.Inventory;
+import com.example.inventoryservice.model.InventoryCheck;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,6 +23,12 @@ public class InventoryController {
     @GetMapping()
     public Inventory getInventoryById(@RequestParam("productId") int productId){
         return inventoryLogic.getInventoryById(productId);
+    }
+
+    @PostMapping("/checkInventory")
+    public ResponseEntity checkInventory(@RequestBody InventoryCheck inventoryCheck)
+    {
+    return ResponseEntity.status(406).build();
     }
 
 
