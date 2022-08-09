@@ -2,9 +2,8 @@ package com.example.inventoryservice.controller;
 
 import com.example.inventoryservice.logic.InventoryLogic;
 import com.example.inventoryservice.model.Inventory;
-import com.example.inventoryservice.model.InventoryCheck;
+import com.example.inventoryservice.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -25,11 +24,16 @@ public class InventoryController {
         return inventoryLogic.getInventoryById(productId);
     }
 
-    @PostMapping("/checkInventory")
-    public ResponseEntity checkInventory(@RequestBody InventoryCheck inventoryCheck)
+    @PutMapping("/updateInventory")
+    public void updateInventory(@RequestBody updateInventory updateInventory)
     {
-    return ResponseEntity.status(406).build();
+
+
+        inventoryLogic.updateInventory(updateInventory);
+
     }
+
+
 
 
 }
