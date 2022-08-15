@@ -32,7 +32,7 @@ public class InventoryLogic {
     public ResponseEntity<?> updateInventory(updateInventory updateInventory)
     {
         Inventory inventory=inventoryDao.getInventoryById(updateInventory.getProductId());
-            
+
         int currentQty=inventory.getTotalQuantity();
         if(currentQty>0) {
             int updateQTY = currentQty - updateInventory.getProductQty();
