@@ -2,6 +2,7 @@ package com.example.inventoryservice.logic;
 
 import com.example.inventoryservice.dao.InventoryDao;
 import com.example.inventoryservice.model.Inventory;
+import com.example.inventoryservice.repository.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,8 @@ public class InventoryLogic {
 
     @Autowired
     InventoryDao inventoryDao;
+    @Autowired
+    InventoryRepository inventoryRepository;
 
 
     @Transactional
@@ -31,18 +34,30 @@ public class InventoryLogic {
 
     public ResponseEntity<?> updateInventory(updateInventory updateInventory)
     {
-        Inventory inventory=inventoryDao.getInventoryById(updateInventory.getProductId());
+        System.out.println(updateInventory);
+        Inventory inventory=inventoryRepository.findInventoryByProductId(updateInventory.getProductId());
+        System.out.println(inventory);
+        if(inventory!=null){
 
-        int currentQty=inventory.getTotalQuantity();
-        if(currentQty>0) {
-            int updateQTY = currentQty - updateInventory.getProductQty();
-            inventory.setTotalQuantity(updateQTY);
-            inventoryDao.updateInventory(inventory);
-            return ResponseEntity.status(200).build();
+            int currentQty=inventory.getTotalQuantity();
+            if(currentQty>=updateInventory.getProductQty()) {
+                int updateQTY = currentQty - updateInventory.getProductQty();
+                inventory.setTotalQuantity(updateQTY);
+                inventoryDao.updateInventory(inventory);
+                return ResponseEntity.status(202).build();
+            }
+            else {
+                return ResponseEntity.status(406).build();
+            }
+
         }
         else {
-            return ResponseEntity.status(406).build();
+             return ResponseEntity.status(400).build();
         }
+
+
+
+
 
 
     }

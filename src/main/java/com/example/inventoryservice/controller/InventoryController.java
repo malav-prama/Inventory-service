@@ -19,15 +19,14 @@ public class InventoryController {
         inventoryLogic.createInventory(inventory);
     }
 
-    @GetMapping()
+    @GetMapping("/")
     public Inventory getInventoryById(@RequestParam("productId") int productId){
         return inventoryLogic.getInventoryById(productId);
     }
 
-    @PutMapping("/updateInventory")
-    public void updateInventory(@RequestBody updateInventory updateInventory)
+    @PutMapping("/{id}")
+    public void updateInventory(@PathVariable("id") Integer id,@RequestBody updateInventory updateInventory)
     {
-
 
         inventoryLogic.updateInventory(updateInventory);
 
