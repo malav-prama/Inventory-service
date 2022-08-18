@@ -2,12 +2,9 @@ spring:
   data:
     mongodb:
       database: order_DB
-<<<<<<< HEAD
+
       host: localhost
       port: 27017
 
 #change port to mongo2 while using docker
-=======
-      host: mongo2
-      port: 27017
->>>>>>> updatedInventoryLogic
+
