@@ -1,5 +1,5 @@
 # define base docker image
 FROM openjdk:15
-ARG JAR_FILE=out/artifacts/OrderService_jar/labJ1.jar
-COPY ${JAR_FILE} labj1.jar
-ENTRYPOINT ["java","-jar","/labj1.jar"]
+ARG JAR_FILE=target/Inventory-service-0.0.1-SNAPSHOT.jar
+COPY ${JAR_FILE} inventory-service.jar
+ENTRYPOINT ["java","-jar","/inventory-service.jar"]

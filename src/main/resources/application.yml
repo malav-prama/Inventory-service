@@ -1,0 +1,6 @@
+spring:
+  data:
+    mongodb:
+      database: order_DB
+      host: mongo2
+      port: 27017
