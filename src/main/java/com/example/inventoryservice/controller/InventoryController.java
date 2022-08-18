@@ -25,8 +25,13 @@ public class InventoryController {
         return inventoryLogic.getInventoryById(productId);
     }
 
+
     @PostMapping("/checkInventory")
     public ResponseEntity checkInventory(@RequestBody InventoryCheck inventoryCheck)
+
+    @PutMapping("/updateInventory")
+    public void updateInventory( @RequestBody updateInventory updateInventory)
+
     {
     return ResponseEntity.status(406).build();
     }

@@ -1,0 +1,8 @@
+spring:
+  data:
+    mongodb:
+      database: order_DB
+      host: localhost
+      port: 27017
+
+#change port to mongo2 while using docker
