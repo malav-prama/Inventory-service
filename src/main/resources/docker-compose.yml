@@ -1,0 +1,14 @@
+version: "3"
+services:
+  mongo2:
+    image: mongo
+    container_name: "service2mongo"
+    ports:
+      - 27017:27017
+  inventory-service:
+    image: inventory-service
+    container_name: inventory-service
+    ports:
+      - 8081:8081
+    links:
+      - mongo2
